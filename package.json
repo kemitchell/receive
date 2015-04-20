@@ -1,0 +1,36 @@
+{
+  "name": "receive",
+  "description": "launch an HTTP file upload server from the command line",
+  "version": "1.0.0-prerelease-1",
+  "author": "Kyle E. Mitchell <kyle@kemitchell.com> (http://kemitchell.com)",
+  "bin": {
+    "receive": "./bin/receive"
+  },
+  "bugs": "https://github.com/kemitchell/receive/issues",
+  "dependencies": {
+    "busboy": "^0.2.9",
+    "docopt": "^0.6.2",
+    "html-entities": "^1.1.2"
+  },
+  "devDependencies": {
+    "jscs": "^1.12.0",
+    "jshint": "^2.7.0"
+  },
+  "homepage": "https://github.com/kemitchell/receive",
+  "keywords": [
+    "CLI",
+    "HTTP",
+    "files",
+    "upload",
+    "utilies"
+  ],
+  "license": "Apache-2.0",
+  "main": "source/handler",
+  "preferGlobal": true,
+  "repository": "kemitchell/receive",
+  "scripts": {
+    "lint": "jshint source && jscs source",
+    "pre-commit": "npm run lint",
+    "start": "./bin/receive"
+  }
+}

@@ -1,0 +1,6 @@
+*.tgz
+.editorconfig
+.gitignore
+.jscsrc
+.jshintrc
+.npmignore

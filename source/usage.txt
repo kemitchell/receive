@@ -1,0 +1,6 @@
+Launch an HTTP file upload server from the command line
+
+Usage:
+	receive [--port=PORT] [--directory=DIRECTORY]
+	receive -h | --help
+	receive --version
