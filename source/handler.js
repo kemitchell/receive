@@ -10,9 +10,9 @@ var BOOTSTRAP_CSS =
   '//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css';
 
 module.exports = function(nameAndVersion, directory) {
-  var fieldMeta = {};
-  var destinationPathMeta;
   return function(request, response) {
+    var fieldMeta = {};
+    var destinationPathMeta;
     if (request.method === 'POST') {
       request.pipe(
         new Busboy({headers: request.headers})
