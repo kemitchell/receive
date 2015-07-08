@@ -22,7 +22,7 @@ module.exports = function(nameAndVersion, directory) {
             console.log('Writing ' + destinationPath);
             file.pipe(fs.createWriteStream(destinationPath));
           })
-          .on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
+          .on('field', function(fieldname, val) {
             fieldMeta[fieldname] = val;
           })
           .on('finish', function() {
