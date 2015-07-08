@@ -11,18 +11,37 @@ var BOOTSTRAP_CSS =
 
 module.exports = function(nameAndVersion, directory) {
   return function(request, response) {
+    var fieldMeta = {};
+    var destinationPathMeta;
     if (request.method === 'POST') {
       request.pipe(
         new Busboy({headers: request.headers})
           .on('file', function(fieldName, file, fileName) {
             var destinationPath = path.join(directory, fileName);
+            destinationPathMeta = destinationPath + '.json';
             console.log('Writing ' + destinationPath);
             file.pipe(fs.createWriteStream(destinationPath));
+          })
+          .on('field', function(fieldname, val) {
+            fieldMeta[fieldname] = val;
           })
           .on('finish', function() {
             response.statusCode = 302;
             response.setHeader('Location', '/');
             response.end();
+            var stringifedMetadata = JSON.stringify(fieldMeta);
+            if(Object.keys(fieldMeta).length > 0) {
+              fs.writeFile(
+                destinationPathMeta,
+                stringifedMetadata,
+                function(err) {
+                  if (err) {
+                    return console.log(err);
+                  }
+                  console.log('Written ' + destinationPathMeta);
+                }
+              );
+            }
           })
       );
     } else if (request.method === 'GET') {
