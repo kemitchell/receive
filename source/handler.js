@@ -29,13 +29,18 @@ module.exports = function(nameAndVersion, directory) {
             response.statusCode = 302;
             response.setHeader('Location', '/');
             response.end();
+            var stringifedMetadata = JSON.stringify(fieldMeta);
             if(Object.keys(fieldMeta).length > 0) {
-              fs.writeFile(destinationPathMeta, JSON.stringify(fieldMeta), function(err) {
-                if (err) {
-                  return console.log(err);
+              fs.writeFile(
+                destinationPathMeta,
+                stringifedMetadata,
+                function(err) {
+                  if (err) {
+                    return console.log(err);
+                  }
+                  console.log('Written ' + destinationPathMeta);
                 }
-                console.log('Written ' + destinationPathMeta);
-              });
+              );
             }
           })
       );
